@@ -1,4 +1,18 @@
+body {
+  padding: 0 10%;
+}
+
 h1 {
   color: blue;
   font-size: 72;
+}
+
+div {
+  border: 1px solid;
+  border-color: lightblue;
+  font-size: x-large;
+  padding: 10px;
+  margin-bottom: 5px;
+  border-radius: 3px;
+  box-shadow: 0 0 3px 0px #00000033;
 }

@@ -1,0 +1,2 @@
+add missing commands
+export cheat sheet as png
