@@ -7,7 +7,7 @@ h1 {
   font-size: 72;
 }
 
-div {
+.command {
   border: 1px solid;
   border-color: lightblue;
   font-size: x-large;
@@ -17,6 +17,6 @@ div {
   box-shadow: 0 0 3px 0px #00000033;
 }
 
-div:hover {
+.command:hover {
   color: red;
 }
