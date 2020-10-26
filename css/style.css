@@ -16,3 +16,7 @@ div {
   border-radius: 3px;
   box-shadow: 0 0 3px 0px #00000033;
 }
+
+div:hover {
+  color: red;
+}
