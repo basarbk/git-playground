@@ -3,8 +3,9 @@ body {
 }
 
 h1 {
-  color: blue;
-  font-size: 72;
+  font-size: 46px;
+  text-align: center;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .group {
