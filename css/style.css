@@ -7,12 +7,26 @@ h1 {
   font-size: 72;
 }
 
+.group {
+  border: 1px solid black;
+  border-radius: 5px;
+  margin: 10px 0px;
+}
+
+.group > .header {
+  font-size: xx-large;
+  background-color: blueviolet;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  color: white;
+  padding: 10px;
+  font-weight: bold;
+}
+
 .command {
   border: 1px solid;
   border-color: lightblue;
   font-size: x-large;
   padding: 10px;
-  margin-bottom: 5px;
   border-radius: 3px;
   box-shadow: 0 0 3px 0px #00000033;
 }
