@@ -7,54 +7,261 @@
     <button class="button" onclick="exportAsPng()">Export as PNG</button>
     <div id="capture">
       <h1>Git Cheat Sheet</h1>
-      <div class="group">
-        <div class="header">Config</div>
-        <div class="command">git config - configure git system wide, global or local</div>
+      <div class="command-area">
+        <div class="container">
+          <div class="group">
+            <div class="header">Config</div>
+            <div class="command">
+              git config <span class="description"> - configure git system wide, global or local</span>
+              <ul>
+                <li>git config <span class="param">{storage}</span> <span class="param">{config.key}</span> <span class="param">{value}</span> <span class="explanation"> # storage is --system, --global or --local</span></li>
+                <li>git config --global user.name <span class="value">"Your username"</span><span class="explanation"> # user.name must be set</span></li>
+                <li>git config --global user.email <span class="value">your@mail.com</span><span class="explanation"> # user.email must be set</span></li>
+                <li>git config --global core.editor <span class="value">"code --wait"</span><span class="explanation"> # setting editor as visual studio code</span></li>
+                <li>git config --global alias.lg <span class="value">"log --pretty=format:'%C(red)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(dim magenta)- %ae%Creset' --branches --graph"</span><span class="explanation"> # custom format log command with lg alias</span></li></li>
+                <li>git config --global --unset <span class="param">{config.key}</span><span class="explanation"> # delete the previously set config</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="group">
+            <div class="header">Create</div>
+            <div class="command">git init <span class="description">- create an empty git repository in current directory</span></div>
+            <div class="command">
+              git clone <span class="description">- clone remote repository</span>
+              <ul>
+                <li>git clone https://remote-url/repository.git<span class="explanation"> # copies remote into local folder, repository</span></li>
+                <li>git clone https://remote-url/repository.git <span class="value">folderX</span><span class="explanation"> # copies remote into local folder, folderX</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="group">
+            <div class="header">Branching</div>
+            <div class="command">
+              git branch <span class="description">- creating/listing/deleting branches</span>
+              <ul>
+                <li>git branch <span class="explanation"> # list existing branches</span></li>
+                <li>git branch <span class="value">branchX</span>  <span class="explanation"> # create branch with name branchX</span></li>
+                <li>git branch <span class="value">branchX</span> <span class="param">{pointer}</span> <span class="explanation"> # pointer is HEAD or the commit id for creating the branchX from specific commit</span></li>
+                <li>git branch -d <span class="value">branchX</span> <span class="explanation"> # delete branch</span></li>
+                <li>git branch -D <span class="value">branchX</span> <span class="explanation"> # force delete</span></li>
+                <li>git branch -m <span class="value">old-branchX</span> <span class="value">new-branchX</span> <span class="explanation"> # rename</span></li>
+                <li>git branch --merged  <span class="explanation"> # list the branches merged to current one</span></li>
+                <li>git branch --no-merged  <span class="explanation"> # list unmerged branches</span></li>
+                <li>git branch -u <span class="value">originX/branchX</span> <span class="explanation"> # set remote branc as upstream for current branch</span></li>
+                <li>git branch -a <span class="explanation"> # branch list to include remote branches also</span></li>
+              </ul>
+            </div>
+            <div class="command">
+              git checkout <span class="description">- switch between branches</span>
+              <ul>
+                <li>git checkout <span class="value">branchX</span>  <span class="explanation"> # switch to existing branchX</span></li>
+                <li>git checkout -b <span class="value">branchX</span>  <span class="explanation"> # create and switch to branch</span></li>
+                <li>git checkout -b <span class="value">branchX</span> <span class="param">{pointer}</span> <span class="explanation"> # create a branch from specific commit</span></li>
+              </ul>
+            </div>
+            <div class="command">
+              git switch <span class="description">- same as checkout</span>
+              <ul>
+                <li>git switch -c <span class="value">branchX</span> <span class="explanation"> # create and switch to branch</span></li>
+                <li>git switch -c <span class="value">branchX</span> <span class="param">{pointer}</span> <span class="explanation"> # create a branch from specific commit</span></li>
+                <li>git switch - <span class="explanation"> # switch back to previous branch</li>
+              </ul>
+            </div>
+            <div class="command">
+              git stash <span class="description">- stack for moving uncommitted changes to temporary storage</span>
+              <ul>
+                <li>git stash push</li>
+                <li>git stash list</li>
+                <li>git stash apply <span class="param">{stash-index}</span><span class="explanation"> # applies changes in stash. If stash-index (e.g stash@{1}) is not provided, applies the top of the list</span></li>
+                <li>git stash drop <span class="param">{stash-index}</span><span class="explanation"> # removes the stashed change. If stash-index (e.g stash@{1}) is not provided, drops the top of the list</span></li>
+                <li>git stash pop <span class="param">{stash-index}</span><span class="explanation"> # stash apply & stash drop combined</span></li>
+                <li>git stash show <span class="param">{stash-index}</span> -p<span class="explanation"> # show the diff in stashed change</span></li>
+                <li>git stash clear</li>
+              </ul>
+            </div>
+            <div class="command">
+              git merge <span class="description">- applies the commits of the target branch on top of the current branch's head</span>
+              <ul>
+                <li>git merge <span class="value">branchX</span><span class="explanation"> # merge and commit the changes in branchX to current branch</span></li>
+                <li>git merge --no-commit <span class="value">branchX</span><span class="explanation"> # merge the branchX to current branch without commit</span></li>
+                <li>git merge --abort<span class="explanation"> # rollback to previous state from merge conflict</span></li>
+              </ul>
+            </div>
+            <div class="command">
+              git rebase <span class="description">- applies the commits of this branch on top of the target branch's head</span>
+              <ul>
+                <li>git rebase <span class="value">branchX</span><span class="explanation"> # commit the changes of current branch on top of the branchX last change</span></li>
+                <li>git rebase --continue<span class="explanation"> # complete the rebase operation after resolving conflict</span></li>
+              </ul>
+            </div>
+            <div class="command">
+              git cherry-pick <span class="description">- copy commit from one branch to another</span>
+              <ul>
+                <li>git cherry-pick <span class="param">{commit-id}</span><span class="explanation"> # copy the specified commit to current branch</span></li>
+                <li>git cherry-pick <span class="param">{commit-X}</span>..<span class="param">{commit-Y}</span><span class="explanation"> # copy the range of commits <u>from the commit after commit-x</u> until the commit-y inclusive</span></li>
+              </ul>
+            </div>
+            <div class="command">
+              git tag <span class="description">- set a custom name to specific commit</span>
+              <ul>
+                <li>git tag -a <span class="value">vX.0</span> -m <span class="value">"Tag message"</span><span class="explanation"> # create annotated tag by setting message about it</span></li>
+                <li>git tag <span class="value">vX.0</span><span class="explanation"> # create lightweight tag</span></li>
+                <li>git tag <span class="value">vX.0</span> <span class="param">{commit-id}</span><span class="explanation"> # create tag for specified commit</span></li>
+                <li>git tag -d <span class="value">vX.0</span><span class="explanation"> # delete tag</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="group">
+            <div class="header">File Operations</div>
+            <div class="command">
+              git clean <span class="description">- remove untracked files</span>
+              <ul>
+                <li>git clean --dry-run / -n<span class="explanation"> # shows which files would have been removed</span></li>
+                <li>git clean -f <span class="value">fileX</span><span class="explanation"> # remove the fileX</span></li>
+                <li>git clean -d -f<span class="explanation"> # remove all untracked files and directories</span></li>
+              </ul>
+            </div>
+            <div class="command">
+              git rm <span class="description">- remove tracked files</span>
+              <ul>
+                <li>git rm <span class="value">fileX</span><span class="explanation"> # remove file from staging area and working directory</span></li>
+                <li>git rm --cached <span class="value">fileX</span><span class="explanation"> # remove file from staging area</span></li>
+              </ul>
+            </div>
+            <div class="command">
+              git mv <span class="description">- move/rename tracked files</span>
+              <ul>
+                <li>git mv <span class="value">old-fileX</span> <span class="value">new-fileX</span><span class="explanation"> # rename or move file</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          
+          <div class="group">
+            <div class="header">Workflow</div>
+            <div class="command">
+              git add <span class="description">- add file to staging area</span>
+              <ul>
+                <li>git add <span class="value">fileX<span class="explanation"> # add fileX to staging area</span></li>
+                <li>git add <span class="value">folderX</span><span class="explanation"> # add all the files under folderX to staging area</span></li>
+                <li>git add .<span class="explanation"> # add all the files to staging area</span></li>
+              </ul>
+            </div>
+            <div class="command">
+              git commit <span class="description">- copy the snapshot from staged area to local repository</span>
+              <ul>
+                <li>git commit<span class="explanation"> # opens editor to set commit message</span></li>
+                <li>git commit -v<span class="explanation"> # shows the diff in editor</span></li>
+                <li>git commit -a -m <span class="value">"Commit message"</span><span class="explanation"> # add all tracked files to staging area and set commit message inline</span></li>
+                <li>git commit --amend<span class="explanation"> # update last commit</span></li>
+              </ul>
+            </div>
+            <div class="command">
+              git reset <span class="description">- unstage changes and undoing commit</span>
+              <ul>
+                <li>git reset <span class="value">fileX</span><span class="explanation"> - unstage fileX</span></li>
+                <li>git reset --hard<span class="explanation"> - reset local working tree and staging area to last commit</span></li>
+                <li>git reset --soft <span class="param">{pointer}</span> <span class="explanation"> # pointer is HEAD or the commit id. reset to specified point but keep changes in staging area and working directory</span></li>
+                <li>git reset <span class="optional">--mixed</span> <span class="param">{pointer}</span> <span class="explanation"> # --mixed is optional. reset to specified point but keep changes only in working directory</span></li>
+                <li>git reset --hard <span class="param">{pointer}</span> <span class="explanation"> # reset to specified point and loose all changes after that point</span></li>
+              </ul>
+            </div>
+            <div class="command">
+              git restore <span class="description">- unstage a file or reset file in working directory</span>
+              <ul>
+                <li>git restore <span class="value">fileX</span><span class="explanation"> - remove changes from specified file in working area</span></li>
+                <li>git restore --staged <span class="value">fileX</span><span class="explanation"> - remove changes from specified file in staging area</span></li>
+              </ul>
+            </div>
+            <div class="command">
+              git checkout <span class="description">- reset file in working directory</span>
+              <ul>
+                <li>git checkout <span class="value">fileX</span></li>
+              </ul>
+            </div>
+            <div class="command">
+              git revert <span class="description">- revert specified commit</span>
+              <ul>
+                <li>git revert HEAD<span class="explanation"> # add a new revert commit for the last committed changes</span></li>
+                <li>git revert <span class="param">{pointer}</span> <span class="explanation"> # pointer is HEAD or the commit id. revert the specified point</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="group">
+            <div class="header">Inspect & History</div>
+            <div class="command">
+              git status <span class="description">- show staged and unstaged files</span>
+              <ul>
+                <li>git status</li>
+                <li>git status --short / -s</li>
+              </ul>
+            </div>
+            <div class="command">
+              git diff <span class="description">- show line by line diff</span>
+              <ul>
+                <li>git diff<span class="explanation"> # diff between working directory and staging area</span></li>
+                <li>git diff --staged / --cached<span class="explanation"> # diff between staging area and local repository</span></li>
+              </ul>
+            </div>
+            <div class="command">
+              git log <span class="description">- lists commit history</span>
+              <ul>
+                <li>git log</li>
+                <li>git log --patch / -p<span class="explanation"> # show changes in each commit</span></li>
+                <li>git log <span class="value">-1</span><span class="explanation"> # show only specified number of commits</span></li>
+                <li>git log --pretty=oneline<span class="explanation"> # print single line of commit logs</span></li>
+                <li>git log --pretty=format:<span class="value">"%h - %s - (%cr) - %ae"</span><span class="explanation"> # print logs in custom format</span></li>
+                <li>git log --branches --graph<span class="explanation"> # print logs from all branches with commit tree graph</span></li>
+              </ul>
+            </div>
+            <div class="command">
+              git show <span class="description">- shows the commit and diff</span>
+              <ul>
+                <li>git show <span class="param">{pointer}</span><span class="explanation"> # pointer is HEAD or the commit id. If not provided, by default it is HEAD. Shows the commit info and changes</span></li>
+              </ul>
+            </div>
+            <div class="command">
+              git ls-files <span class="description">- list files in repository</span>
+            </div>
+          </div>
+          <div class="group">
+            <div class="header">Remote</div>
+            <div class="command">
+              git remote <span class="description">- remote repository</span>
+              <ul>
+                <li>git remote<span class="explanation"> # list remote repositories</span></li>
+                <li>git remote -v<span class="explanation"> # show the url of remote repositories</span></li>
+                <li>git remote rename <span class="value">old-originX</span> <span class="value">new-originX</span><span class="explanation"> # rename remote repository name</span></li>
+                <li>git remote remove <span class="value">originX</span><span class="explanation"> # remove the remote repository</span></li>
+              </ul>
+            </div>
+            <div class="command">
+              git push <span class="description">- pushing local changes to remote</span>
+              <ul>
+                <li>git push -u <span class="value">originX</span> <span class="value">branchX</span><span class="explanation"> # push local branchX to remote, the originX</span></li>
+                <li>git push <span class="value">originX</span> --delete <span class="value">branchX</span><span class="explanation"> # delete remote branch</span></li>
+                <li>git push -f<span class="explanation"> # force push</span></li>
+                <li>git push <span class="value">originX</span> <span class="value">tagX</span><span class="explanation"> # push local tagX to remote</span></li>
+                <li>git push <span class="value">originX</span> --tags<span class="explanation"> # push all local tags</span></li>
+                <li>git push <span class="value">originX</span> --delete <span class="value">tagX</span><span class="explanation"> # delete remote tag</span></li>
+              </ul>
+            </div>
+            <div class="command">
+              git fetch <span class="description">- getting remote changes to local repo</span>
+              <ul>
+                <li>git fetch <span class="value">originX</span><span class="explanation"> # get the latest changes from remote repository. adding remote name is optional if the upstream is set for current branch</span></li>
+                <li>git fetch -p <span class="value">originX</span><span class="explanation"> # prune, to apply the remote delete operations locally</span></li>
+                <li>git fetch -p --prune-tags<span class="explanation"> # delete local tags if they are removed at remote</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="img-container" data-html2canvas-ignore="true">
+            <img src="git-flow.png"/>
+          </div>
+        </div>
       </div>
-      <div class="group">
-        <div class="header">Create</div>
-        <div class="command">git init - create empty git repository in current directory</div>
-        <div class="command">git clone - clone remote repository</div>
       </div>
-      <div class="group">
-        <div class="header">Workflow</div>
-        <div class="command">git add - add file to staging area</div>
-        <div class="command">git commit - copy the snapshot from staged area to local repository</div>
-        <div class="command">git reset - unstage a file</div>
-        <div class="command">git restore - unstage a file or reset file in working directory</div>
-        <div class="command">git checkout - reset file in working directory</div>
-      </div>
-      <div class="group">
-        <div class="header">Inspect & History</div>
-        <div class="command">git status - show staged and unstaged files</div>
-        <div class="command">git diff - show line by line diff</div>
-        <div class="command">git log - lists commit history</div>
-        <div class="command">git show - shows the commit and diff</div>
-        <div class="command">git ls-files - list files in repository</div>
-      </div>
-      <div class="group">
-        <div class="header">File Operations</div>
-        <div class="command">git clean - remove untracked files</div>
-        <div class="command">git rm - remove tracked files</div>
-        <div class="command">git mv - move/rename tracked files</div>
-      </div>
-      <div class="group">
-        <div class="header">Branching</div>
-        <div class="command">git branch - creating/listing/deleting branches</div>
-        <div class="command">git checkout - switch between branches</div>
-        <div class="command">git switch - same as checkout</div>
-        <div class="command">git stash - stack for moving uncommitted changes to temporary storage</div>
-        <div class="command">git rebase - applies the commits of this branch on top of the target branch's head</div>
-        <div class="command">git cherry-pick - copy commit from one branch to another</div>
-        <div class="command">git tag - set a custom name to specific commit</div>
-      </div>
-      <div class="group">
-        <div class="header">Remote</div>
-        <div class="command">git remote - remote repository</div>
-        <div class="command">git push - pushing local changes to remote</div>
-        <div class="command">git fetch - getting remote changes to local repo</div>
-      </div>
-    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js" integrity="sha512-csNcFYJniKjJxRWRV1R7fvnXrycHP6qDR21mgz1ZP55xY5d+aHLfo9/FcGDQLfn2IfngbAHd8LdfsagcCqgTcQ==" crossorigin="anonymous"></script>
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <script src="js/script.js"></script>

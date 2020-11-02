@@ -1,6 +1,8 @@
 body {
-  padding: 0 10%;
+  padding: 0 5%;
 }
+
+
 
 h1 {
   font-size: 46px;
@@ -8,32 +10,72 @@ h1 {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
+.container {
+  width: 45%;
+}
+
 .group {
-  border: 1px solid black;
+  border: 1px solid rgba(0, 0, 0, 0.479);
   border-radius: 5px;
-  margin: 10px 0px;
+  margin: 10px 10px;  
 }
 
 .group > .header {
-  font-size: xx-large;
-  background-color: blueviolet;
+  font-size: x-large;
+  background-color: rgb(43, 137, 226);
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   color: white;
   padding: 10px;
   font-weight: bold;
 }
 
+.command-area {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .command {
-  border: 1px solid;
-  border-color: lightblue;
+  border-bottom: 1px solid;
+  border-color: lightgrey;
   font-size: x-large;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-weight: bold;
   padding: 10px;
-  border-radius: 3px;
-  box-shadow: 0 0 3px 0px #00000033;
+}
+
+.command > .description {
+  font-size: large;
+  font-weight: initial;
 }
 
 .command:hover {
-  color: red;
+  box-shadow: 0px 0px 5px 0px black;
+  cursor: default;
+}
+
+ul {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: medium;
+  list-style-type: square;
+}
+
+.explanation {
+  color: darkgray;
+  font-weight: lighter;
+}
+
+.param {
+  font-weight: bold;
+  color: crimson;
+}
+
+.value {
+  color: mediumseagreen;
+  font-style: italic;
+}
+
+.optional {
+  color: darkgray;
 }
 
 .button{
@@ -51,4 +93,27 @@ h1 {
 .button:hover {
   background-color: rgb(29, 124, 29);
   box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.308);
+}
+
+.img-container {
+  width: 100%;
+  text-align: center;
+}
+
+img {
+  width: 100%;
+}
+
+
+
+@media screen and (max-width: 1280px) {
+  body {
+    padding: 0 2%;
+  }
+  .container {
+    width: 49%;
+  }
+  img {
+    margin-top: 100px;
+  }
 }
